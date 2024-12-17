@@ -1,3 +1,5 @@
+"use client";
+
 import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import Blog from "@/components/Blog";
@@ -9,19 +11,16 @@ import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
-  // other metadata
-};
+import { useSession, signOut } from "next-auth/react";
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
     <>
       <ScrollUp />
-      <Hero />
+      {session ? (
+        <Hero />
+      ) : ''}
       {/* <Features />
       <Video />
       <Brands />

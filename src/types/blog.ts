@@ -6,10 +6,9 @@ type Author = {
 
 export type Blog = {
   id: number;
-  title: string;
-  paragraph: string;
+  product_name: string;
+  points_required: string;
   image: string;
-  author: Author;
-  tags: string[];
-  publishDate: string;
+  expiration_date: string;
+  redeemed: boolean;
 };

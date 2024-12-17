@@ -1,16 +1,35 @@
+'use client'
+
 import SingleBlog from "@/components/Blog/SingleBlog";
 import blogData from "@/components/Blog/blogData";
-import Breadcrumb from "@/components/Common/Breadcrumb";
-
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Reward Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Blog Page for Startup Nextjs Template",
-  // other metadata
-};
+import { useEffect, useState, useRef } from 'react';
+import { useSession } from "next-auth/react";
+import { getPrivilegeByUserID } from '@/services/api/privilegeService';
 
 const Reward = () => {
+  const [items, setItems] = useState<any[]>([]);
+  const [isLoading, setLoading] = useState(false);
+  const initialized = useRef(false);
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (!initialized.current && session) {
+      initialized.current = true;
+      init();
+    }
+  }, [session]);
+
+  async function init() {
+    setLoading(true);
+    try {
+      const response: any = await getPrivilegeByUserID(session.user.id);
+      setItems(response);
+    } catch (error) {
+      // toast.error(<Text as="b">Get Bookings failed</Text>);
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <>
       {/* <Breadcrumb
@@ -21,7 +40,7 @@ const Reward = () => {
       <section className="pb-[120px] pt-[120px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center">
-            {blogData.map((blog) => (
+            {items.map((blog) => (
               <div
                 key={blog.id}
                 className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3"
