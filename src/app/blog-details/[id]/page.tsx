@@ -1,7 +1,6 @@
 'use client'
 
-import SharePost from "@/components/Blog/SharePost";
-import TagButton from "@/components/Blog/TagButton";
+import Swal from "sweetalert2";
 import Image from "next/image";
 import { useEffect, useState, useRef } from 'react';
 import { useSession } from "next-auth/react";
@@ -60,8 +59,32 @@ const BlogDetailsPage = ({ params }: { params: { id: string } }) => {
     }
   }
 
-  console.log(points)
-  console.log(item?.points_required)
+  const showAlert = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to redeem?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, redeem!",
+      cancelButtonText: "Close",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        redeem()
+        // Swal.fire("Proceeding!", "You clicked yes.", "success");
+        Swal.fire({
+          // position: "top-end",
+          icon: "success",
+          title: "Redeemed",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      } else {
+        // Swal.fire("Cancelled", "You clicked cancel.", "info");
+      }
+    });
+  };
 
   return (
     <>
@@ -104,7 +127,7 @@ const BlogDetailsPage = ({ params }: { params: { id: string } }) => {
                 <div className="text-center mb-5">
                   <a
                     href="#"
-                    onClick={redeem}
+                    onClick={showAlert}
                     className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white ${item?.redeemed || points < item?.points_required ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-primary-dark"
                       } w-full max-w-xs`}
                     style={{ pointerEvents: item?.redeemed || points < item?.points_required ? "none" : "auto" }}

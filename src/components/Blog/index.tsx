@@ -14,6 +14,10 @@ const Blog = () => {
   const { data: session } = useSession();
 
   useEffect(() => {
+    init();
+  }, []);
+
+  useEffect(() => {
     if (!initialized.current && session) {
       initialized.current = true;
       init();
@@ -23,7 +27,7 @@ const Blog = () => {
   async function init() {
     setLoading(true);
     try {
-      const response: any = await getPrivilegeByUserID(session.user.id);
+      const response: any = await getPrivilegeByUserID(session.user.id || 0);
       setItems(response);
     } catch (error) {
       // toast.error(<Text as="b">Get Bookings failed</Text>);
