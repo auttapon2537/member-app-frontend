@@ -58,3 +58,11 @@ docker-compose up -d
 ```bash
 curl -X GET http://localhost:3000/
 ```
+
+## User
+
+| Username      | Password      |
+| ------------- |:-------------:|
+| admin         | passwd        |
+| user01        | passwd        |
+| user02        | passwd        |
