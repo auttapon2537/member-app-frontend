@@ -68,5 +68,20 @@ curl -X GET http://localhost:3000/
 | user02        | passwd        |
 
 ## Example
+Login page
+![Alt text](./docs/000.png)
 
+Home page
 ![Alt text](./docs/001.png)
+
+Privileges section
+![Alt text](./docs/002.png)
+
+Detail section (Ready to redeem)
+![Alt text](./docs/003.png)
+
+Detail section (Redeemed)
+![Alt text](./docs/004.png)
+
+Detail section (Points not enough)
+![Alt text](./docs/005.png)
