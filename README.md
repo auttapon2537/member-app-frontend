@@ -59,10 +59,14 @@ docker-compose up -d
 curl -X GET http://localhost:3000/
 ```
 
-## User
+## User for test
 
 | Username      | Password      |
 | ------------- |:-------------:|
 | admin         | passwd        |
 | user01        | passwd        |
 | user02        | passwd        |
+
+## Example
+
+![Alt text](./docs/001.png)
