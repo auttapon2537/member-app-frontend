@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  app:
+    image: member-app-front
+    # env_file:
+    #   - .env.production
+    ports:
+      - 3000:3000
+    restart: always

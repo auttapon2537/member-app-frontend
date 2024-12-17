@@ -42,3 +42,19 @@ npm run dev
 ```bash
 curl -X GET http://localhost:3000/
 ```
+
+### Development Setup
+1. Build:
+```bash
+docker build -t member-app-front .
+```
+
+2. Run Docker:
+```bash
+docker-compose up -d
+```
+
+3. Check service is running:
+```bash
+curl -X GET http://localhost:3000/
+```
