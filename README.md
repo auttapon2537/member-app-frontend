@@ -28,17 +28,22 @@ git clone https://github.com/auttapon2537/member-app-frontend.git
 cd member-app-backend
 ```
 
-2. Install dependencies:
+2. Rename Environment file:
+```bash
+mv .env.local.example .env.local
+```
+
+3. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Run project:
+4. Run project:
 ```bash
 npm run dev
 ```
 
-4. Check service is running:
+5. Check service is running:
 ```bash
 curl -X GET http://localhost:3000/
 ```
